@@ -1,0 +1,1562 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>尝试用Python画图 | Jorsdan的第三个小站</title>
+        <meta name="author" content="Jorsdan">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="https://s2.loli.net/2022/10/03/epf6zAL7RZhjBlw.jpg">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.2.0/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">Jorsdan的第三个小站</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;Jorsdan的第三个小站</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>尝试用Python画图 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/代码/">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                </span>
+                代码
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/代码/" style="color: #03a9f4">
+                    代码
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="直接上代码"><a href="#直接上代码" class="headerlink" title="直接上代码:"></a>直接上代码:</h1><h2 id="玫瑰实战"><a href="#玫瑰实战" class="headerlink" title="玫瑰实战:"></a>玫瑰实战:</h2><span id="more"></span>
+<pre><code># 绘制玫瑰花并添加文字
+import turtle
+
+# 设置画布大小
+# turtle.screensize(canvwidth=None, canvheight=None, bg=None)
+turtle.setup(width=0.6, height=0.6)
+# 设置初始位置
+turtle.penup()
+turtle.left(90)
+turtle.fd(200)
+turtle.pendown()
+turtle.right(90)
+turtle.pensize(4)#画笔粗细
+
+# 输出文字
+printer = turtle.Turtle()
+printer.hideturtle()
+printer.penup()
+printer.back(200)
+printer.write(&quot;赠给亲爱的 Alice\n\n&quot;, align=&quot;right&quot;, font=(&quot;宋体&quot;, 20, &quot;bold&quot;))
+printer.write(&quot;from Surorinr&quot;, align=&quot;center&quot;, font=(&quot;宋体&quot;, 25, &quot;normal&quot;))
+
+# 花蕊
+turtle.fillcolor(&quot;red&quot;)
+turtle.begin_fill()
+turtle.circle(10, 180)
+turtle.circle(25, 110)
+turtle.left(50)
+turtle.circle(60, 45)
+turtle.circle(20, 170)
+turtle.right(24)
+turtle.fd(30)
+turtle.left(10)
+turtle.circle(30, 110)
+turtle.fd(20)
+turtle.left(40)
+turtle.circle(90, 70)
+turtle.circle(30, 150)
+turtle.right(30)
+turtle.fd(15)
+turtle.circle(80, 90)
+turtle.left(15)
+turtle.fd(45)
+turtle.right(165)
+turtle.fd(20)
+turtle.left(155)
+turtle.circle(150, 80)
+turtle.left(50)
+turtle.circle(150, 90)
+turtle.end_fill()
+
+# 花瓣1
+turtle.left(150)
+turtle.circle(-90, 70)
+turtle.left(20)
+turtle.circle(75, 105)
+turtle.setheading(60)
+turtle.circle(80, 98)
+turtle.circle(-90, 40)
+
+# 花瓣2
+turtle.left(180)
+turtle.circle(90, 40)
+turtle.circle(-80, 98)
+turtle.setheading(-83)
+
+# 叶子1
+turtle.fd(30)
+turtle.left(90)
+turtle.fd(25)
+turtle.left(45)
+turtle.fillcolor(&quot;green&quot;)
+turtle.begin_fill()
+turtle.circle(-80, 90)
+turtle.right(90)
+turtle.circle(-80, 90)
+turtle.end_fill()
+turtle.right(135)
+turtle.fd(60)
+turtle.left(180)
+turtle.fd(85)
+turtle.left(90)
+turtle.fd(80)
+
+# 叶子2
+turtle.right(90)
+turtle.right(45)
+turtle.fillcolor(&quot;green&quot;)
+turtle.begin_fill()
+turtle.circle(80, 90)
+turtle.left(90)
+turtle.circle(80, 90)
+turtle.end_fill()
+turtle.left(135)
+turtle.fd(60)
+turtle.left(180)
+turtle.fd(60)
+turtle.right(90)
+turtle.circle(200, 60)
+
+turtle.done()
+</code></pre>
+<p>效果展示:<br><img src="https://s2.loli.net/2022/09/27/WO13bAXrquz9yLB.jpg" alt="pic"><br>动图:<br><img src="https://s2.loli.net/2022/09/28/y1eSLOqmj5KM9fa.gif"></p>
+<h2 id="皮卡丘实战"><a href="#皮卡丘实战" class="headerlink" title="皮卡丘实战:"></a>皮卡丘实战:</h2><pre><code># coding:utf-8
+import turtle as t
+import time
+# 皮卡丘
+# 基础设置
+t.screensize(800, 600)
+t.pensize(4)  # 设置画笔的大小
+t.speed(50)  # 设置画笔速度为10
+# 画左偏曲线函数
+def radian_left(ang, dis, step, n):
+    for i in range(n):
+        dis += step  # dis增大step
+        t.lt(ang)  # 向左转ang度
+        t.fd(dis)  # 向前走dis的步长
+def radian_right(ang, dis, step, n):
+    for i in range(n):
+        dis += step
+        t.rt(ang)  # 向左转ang度
+        t.fd(dis)  # 向前走dis的步长
+# 画耳朵
+def InitEars():
+    t.color(&quot;black&quot;, &quot;yellow&quot;)
+    # 左耳朵曲线
+    t.pu()  # 提笔
+    t.goto(-50, 100)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(110)  # 画笔角度
+    t.begin_fill()
+    radian_left(1.2, 0.4, 0.1, 40)
+    t.setheading(270)  # 画笔角度
+    radian_left(1.2, 0.4, 0.1, 40)
+    t.setheading(44)  # 画笔角度
+    t.forward(32)
+    t.end_fill()
+    # 右耳朵曲线
+    t.pu()  # 提笔
+    t.goto(50, 100)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(70)  # 画笔角度
+    t.begin_fill()
+    radian_right(1.2, 0.4, 0.1, 40)
+    t.setheading(270)  # 画笔角度
+    radian_right(1.2, 0.4, 0.1, 40)
+    t.setheading(136)  # 画笔角度
+    t.forward(32)
+    t.end_fill()
+    # 耳朵黑
+    t.begin_fill()
+    t.fillcolor(&quot;black&quot;)
+    t.pu()  # 提笔
+    t.goto(88, 141)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(35)  # 画笔角度
+    radian_right(1.2, 1.6, 0.1, 16)
+    t.setheading(270)  # 画笔角度
+    radian_right(1.2, 0.4, 0.1, 25)
+    t.setheading(132)  # 画笔角度
+    t.forward(31)
+    t.end_fill()
+    t.begin_fill()
+    t.fillcolor(&quot;black&quot;)
+    t.pu()  # 提笔
+    t.goto(-88, 141)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(145)  # 画笔角度
+    radian_left(1.2, 1.6, 0.1, 16)
+    t.setheading(270)  # 画笔角度
+    radian_left(1.2, 0.4, 0.1, 25)
+    t.setheading(48)  # 画笔角度
+    t.forward(31)
+    t.end_fill()
+# 画尾巴
+def InitTail():
+    # 尾巴
+    t.begin_fill()
+    t.fillcolor(&quot;yellow&quot;)
+    t.pu()  # 提笔
+    t.goto(64, -140)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(10)  # 画笔角度
+    t.forward(20)
+    t.setheading(90)  # 画笔角度
+    t.forward(20)
+    t.setheading(10)  # 画笔角度
+    t.forward(10)
+    t.setheading(80)  # 画笔角度
+    t.forward(100)
+    t.setheading(35)  # 画笔角度
+    t.forward(80)
+    t.setheading(260)  # 画笔角度
+    t.forward(100)
+    t.setheading(205)  # 画笔角度
+    t.forward(40)
+    t.setheading(260)  # 画笔角度
+    t.forward(37)
+    t.setheading(205)  # 画笔角度
+    t.forward(20)
+    t.setheading(260)  # 画笔角度
+    t.forward(25)
+    t.setheading(175)  # 画笔角度
+    t.forward(30)
+    t.setheading(100)  # 画笔角度
+    t.forward(13)
+    t.end_fill()
+# 画脚
+def InitFoots():
+    # 脚
+    t.begin_fill()
+    t.fillcolor(&quot;yellow&quot;)
+    t.pensize(2)
+    t.pu()  # 提笔
+    t.goto(-70, -200)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(225)  # 画笔角度
+    radian_left(0.5, 1.2, 0, 12)
+    radian_left(35, 0.6, 0, 4)
+    radian_left(1, 1.2, 0, 18)
+    t.setheading(160)  # 画笔角度
+    t.forward(13)
+    t.end_fill()
+    t.begin_fill()
+    t.fillcolor(&quot;yellow&quot;)
+    t.pensize(2)
+    t.pu()  # 提笔
+    t.goto(70, -200)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(315)  # 画笔角度
+    radian_right(0.5, 1.2, 0, 12)
+    radian_right(35, 0.6, 0, 4)
+    radian_right(1, 1.2, 0, 18)
+    t.setheading(20)  # 画笔角度
+    t.forward(13)
+    t.end_fill()
+# 画身体
+def InitBody():
+    # 外形轮廓
+    t.begin_fill()
+    t.pu()  # 提笔
+    t.goto(112, 0)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(90)  # 画笔角度
+    t.circle(112, 180)
+    t.setheading(250)  # 画笔角度
+    radian_left(1.6, 1.3, 0, 50)
+    radian_left(0.8, 1.5, 0, 25)
+    t.setheading(255)  # 画笔角度
+    radian_left(0.4, 1.6, 0.2, 27)
+    radian_left(2.8, 1, 0, 45)
+    radian_right(0.9, 1.4, 0, 31)
+    t.setheading(355)  # 画笔角度
+    radian_right(0.9, 1.4, 0, 31)
+    radian_left(2.8, 1, 0, 45)
+    radian_left(0.4, 7.2, -0.2, 27)
+    t.setheading(10)  # 画笔角度
+    radian_left(0.8, 1.5, 0, 25)
+    radian_left(1.6, 1.3, 0, 50)
+    t.end_fill()
+def InitEyes():
+    # 左眼睛
+    t.begin_fill()
+    t.fillcolor(&quot;black&quot;)
+    t.pu()  # 提笔
+    t.goto(-46, 10)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(90)  # 画笔角度
+    t.circle(5, 360)
+    t.end_fill()
+    # 右眼睛
+    t.begin_fill()
+    t.fillcolor(&quot;black&quot;)
+    t.pu()  # 提笔
+    t.goto(46, 10)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(-90)  # 画笔角度
+    t.circle(5, 360)
+    t.end_fill()
+# 画脸
+def InitFace():
+    # 脸蛋
+    t.begin_fill()
+    t.fillcolor(&quot;red&quot;)
+    t.pu()  # 提笔
+    t.goto(-63, -10)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(90)  # 画笔角度
+    t.circle(10, 360)
+    t.end_fill()
+    t.begin_fill()
+    t.fillcolor(&quot;red&quot;)
+    t.pu()  # 提笔
+    t.goto(63, -10)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(-90)  # 画笔角度
+    t.circle(10, 360)
+    t.end_fill()
+    # 嘴巴
+    t.pensize(2.2)
+    t.pu()  # 提笔
+    t.goto(0, 0)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(235)  # 画笔角度
+    radian_right(5, 0.8, 0, 30)
+    t.pu()  # 提笔
+    t.goto(0, 0)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(305)  # 画笔角度
+    radian_left(5, 0.8, 0, 30)
+# 画手
+def InitHands():
+    # 左手
+    t.pensize(2)
+    t.pu()  # 提笔
+    t.goto(-46, -100)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(285)  # 画笔角度
+    radian_right(0.4, 1.2, 0, 26)
+    radian_right(5, 0.35, 0, 26)
+    radian_right(0.3, 1.2, 0, 15)
+    # 右手
+    t.pu()  # 提笔
+    t.goto(46, -100)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(255)  # 画笔角度
+    radian_left(0.4, 1.2, 0, 26)
+    radian_left(5, 0.35, 0, 26)
+    radian_left(0.3, 1.2, 0, 15)
+def CloseEyes():
+    # 左眼睛
+    t.pu()  # 提笔
+    t.goto(-46, 12)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(180)  # 画笔角度
+    t.forward(10)
+    # 右眼睛
+    t.pu()  # 提笔
+    t.goto(46, 12)  # 笔头初始位置
+    t.pd()  # 下笔
+    t.setheading(0)  # 画笔角度
+    t.forward(10)
+# 初始化
+def Init():
+    InitEars()
+    InitTail()
+    InitFoots()
+    InitBody()
+    InitFace()
+    InitHands()
+    InitEyes()
+# 眨眼睛
+def Upgarde():
+    InitEars()
+    InitTail()
+    InitFoots()
+    InitBody()
+    InitFace()
+    InitHands()
+    CloseEyes()
+def Upgarde_Init():
+    InitEars()
+    InitTail()
+    InitFoots()
+    InitBody()
+    InitFace()
+    InitHands()
+    InitEyes()
+def main():
+    Init()
+    t.tracer(False)
+    # 眨眼睛动画
+    for i in range(30):
+        if i % 2 == 0:
+            t.reset()
+            t.hideturtle()
+            Upgarde()
+            t.update()
+            time.sleep(0.3)
+        else:
+            t.reset()
+            t.hideturtle()
+            Upgarde_Init()
+            t.update()
+            time.sleep(1)
+main()
+# 结束画笔
+t.done()
+</code></pre>
+<p>效果展示:<br><img src="https://s2.loli.net/2022/09/28/CdqSb62UJHrRVcm.jpg" alt="pkqiu.jpg"></p>
+<p>动图:<br><img src="https://s2.loli.net/2022/09/28/X9cPyNiGATlvdOh.gif" alt="pkqiu.gif"></p>
+<h2 id="冰墩墩实战"><a href="#冰墩墩实战" class="headerlink" title="冰墩墩实战:"></a>冰墩墩实战:</h2><pre><code>import turtle
+
+turtle.title(&#39;PythonBingDwenDwen&#39;)
+turtle.speed(80)  # 速度*
+
+# 左手
+turtle.penup()
+turtle.goto(177, 112)
+turtle.pencolor(&quot;lightgray&quot;)
+turtle.pensize(3)
+turtle.fillcolor(&quot;white&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(80)
+turtle.circle(-45, 200)
+turtle.circle(-300, 23)
+turtle.end_fill()
+
+# 左手内
+turtle.penup()
+turtle.goto(182, 95)
+turtle.pencolor(&quot;black&quot;)
+turtle.pensize(1)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.setheading(95)
+turtle.pendown()
+turtle.circle(-37, 160)
+turtle.circle(-20, 50)
+turtle.circle(-200, 30)
+turtle.end_fill()
+# 轮廓
+# 头顶
+turtle.penup()
+turtle.goto(-73, 230)
+turtle.pencolor(&quot;lightgray&quot;)
+turtle.pensize(3)
+turtle.fillcolor(&quot;white&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(20)
+turtle.circle(-250, 35)
+# 左耳
+turtle.setheading(50)
+turtle.circle(-42, 180)
+# 左侧
+turtle.setheading(-50)
+turtle.circle(-190, 30)
+turtle.circle(-320, 45)
+# 左腿
+turtle.circle(120, 30)
+turtle.circle(200, 12)
+turtle.circle(-18, 85)
+turtle.circle(-180, 23)
+turtle.circle(-20, 110)
+turtle.circle(15, 115)
+turtle.circle(100, 12)
+# 右腿
+turtle.circle(15, 120)
+turtle.circle(-15, 110)
+turtle.circle(-150, 30)
+turtle.circle(-15, 70)
+turtle.circle(-150, 10)
+turtle.circle(200, 35)
+turtle.circle(-150, 20)
+# 右手
+turtle.setheading(-120)
+turtle.circle(50, 30)
+turtle.circle(-35, 200)
+turtle.circle(-300, 23)
+# 右侧
+turtle.setheading(86)
+turtle.circle(-300, 26)
+# 右耳
+turtle.setheading(122)
+turtle.circle(-53, 160)
+turtle.end_fill()
+
+# 右耳内
+turtle.penup()
+turtle.goto(-130, 180)
+turtle.pencolor(&quot;black&quot;)
+turtle.pensize(1)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(120)
+turtle.circle(-28, 160)
+turtle.setheading(210)
+turtle.circle(150, 20)
+turtle.end_fill()
+
+# 左耳内
+turtle.penup()
+turtle.goto(90, 230)
+turtle.setheading(40)
+turtle.begin_fill()
+turtle.pendown()
+turtle.circle(-30, 170)
+turtle.setheading(125)
+turtle.circle(150, 23)
+turtle.end_fill()
+
+# 右手内
+turtle.penup()
+turtle.goto(-180, -55)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.setheading(-120)
+turtle.pendown()
+turtle.circle(50, 30)
+turtle.circle(-27, 200)
+turtle.circle(-300, 20)
+turtle.setheading(-90)
+turtle.circle(300, 14)
+turtle.end_fill()
+
+# 左腿内
+turtle.penup()
+turtle.goto(108, -168)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(-115)
+turtle.circle(110, 15)
+turtle.circle(200, 10)
+turtle.circle(-18, 80)
+turtle.circle(-180, 13)
+turtle.circle(-20, 90)
+turtle.circle(15, 60)
+turtle.setheading(42)
+turtle.circle(-200, 29)
+turtle.end_fill()
+# 右腿内
+turtle.penup()
+turtle.goto(-38, -210)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(-155)
+turtle.circle(15, 100)
+turtle.circle(-10, 110)
+turtle.circle(-100, 30)
+turtle.circle(-15, 65)
+turtle.circle(-100, 10)
+turtle.circle(200, 15)
+turtle.setheading(-14)
+turtle.circle(-200, 27)
+turtle.end_fill()
+
+# 右眼
+# 眼圈
+turtle.penup()
+turtle.goto(-64, 120)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(40)
+turtle.circle(-35, 152)
+turtle.circle(-100, 50)
+turtle.circle(-35, 130)
+turtle.circle(-100, 50)
+turtle.end_fill()
+# 眼珠
+turtle.penup()
+turtle.goto(-47, 55)
+turtle.fillcolor(&quot;white&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(25, 360)
+turtle.end_fill()
+turtle.penup()
+turtle.goto(-45, 62)
+turtle.pencolor(&quot;darkslategray&quot;)
+turtle.fillcolor(&quot;darkslategray&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(19, 360)
+turtle.end_fill()
+turtle.penup()
+turtle.goto(-45, 68)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(10, 360)
+turtle.end_fill()
+turtle.penup()
+turtle.goto(-47, 86)
+turtle.pencolor(&quot;white&quot;)
+turtle.fillcolor(&quot;white&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(5, 360)
+turtle.end_fill()
+
+# 左眼
+# 眼圈
+turtle.penup()
+turtle.goto(51, 82)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(120)
+turtle.circle(-32, 152)
+turtle.circle(-100, 55)
+turtle.circle(-25, 120)
+turtle.circle(-120, 45)
+turtle.end_fill()
+# 眼珠
+turtle.penup()
+turtle.goto(79, 60)
+turtle.fillcolor(&quot;white&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(24, 360)
+turtle.end_fill()
+turtle.penup()
+turtle.goto(79, 64)
+turtle.pencolor(&quot;darkslategray&quot;)
+turtle.fillcolor(&quot;darkslategray&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(19, 360)
+turtle.end_fill()
+turtle.penup()
+turtle.goto(79, 70)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(10, 360)
+turtle.end_fill()
+turtle.penup()
+turtle.goto(79, 88)
+turtle.pencolor(&quot;white&quot;)
+turtle.fillcolor(&quot;white&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(0)
+turtle.circle(5, 360)
+turtle.end_fill()
+
+# 鼻子
+turtle.penup()
+turtle.goto(37, 80)
+turtle.fillcolor(&quot;black&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.circle(-8, 130)
+turtle.circle(-22, 100)
+turtle.circle(-8, 130)
+turtle.end_fill()
+
+# 嘴
+turtle.penup()
+turtle.goto(-15, 48)
+turtle.setheading(-36)
+turtle.begin_fill()
+turtle.pendown()
+turtle.circle(60, 70)
+turtle.setheading(-132)
+turtle.circle(-45, 100)
+turtle.end_fill()
+
+# 彩虹圈
+turtle.penup()
+turtle.goto(-135, 120)
+turtle.pensize(5)
+turtle.pencolor(&quot;cyan&quot;)
+turtle.pendown()
+turtle.setheading(60)
+turtle.circle(-165, 150)
+turtle.circle(-130, 78)
+turtle.circle(-250, 30)
+turtle.circle(-138, 105)
+turtle.penup()
+turtle.goto(-131, 116)
+turtle.pencolor(&quot;slateblue&quot;)
+turtle.pendown()
+turtle.setheading(60)
+turtle.circle(-160, 144)
+turtle.circle(-120, 78)
+turtle.circle(-242, 30)
+turtle.circle(-135, 105)
+turtle.penup()
+turtle.goto(-127, 112)
+turtle.pencolor(&quot;orangered&quot;)
+turtle.pendown()
+turtle.setheading(60)
+turtle.circle(-155, 136)
+turtle.circle(-116, 86)
+turtle.circle(-220, 30)
+turtle.circle(-134, 103)
+turtle.penup()
+turtle.goto(-123, 108)
+turtle.pencolor(&quot;gold&quot;)
+turtle.pendown()
+turtle.setheading(60)
+turtle.circle(-150, 136)
+turtle.circle(-104, 86)
+turtle.circle(-220, 30)
+turtle.circle(-126, 102)
+turtle.penup()
+turtle.goto(-120, 104)
+turtle.pencolor(&quot;greenyellow&quot;)
+turtle.pendown()
+turtle.setheading(60)
+turtle.circle(-145, 136)
+turtle.circle(-90, 83)
+turtle.circle(-220, 30)
+turtle.circle(-120, 100)
+turtle.penup()
+
+# 爱心
+turtle.penup()
+turtle.goto(220, 115)
+turtle.pencolor(&quot;brown&quot;)
+turtle.pensize(1)
+turtle.fillcolor(&quot;brown&quot;)
+turtle.begin_fill()
+turtle.pendown()
+turtle.setheading(36)
+turtle.circle(-8, 180)
+turtle.circle(-60, 24)
+turtle.setheading(110)
+turtle.circle(-60, 24)
+turtle.circle(-8, 180)
+turtle.end_fill()
+
+# 五环
+turtle.penup()
+turtle.goto(-5, -170)
+turtle.pendown()
+turtle.pencolor(&quot;blue&quot;)
+turtle.circle(6)
+turtle.penup()
+turtle.goto(10, -170)
+turtle.pendown()
+turtle.pencolor(&quot;black&quot;)
+turtle.circle(6)
+turtle.penup()
+turtle.goto(25, -170)
+turtle.pendown()
+turtle.pencolor(&quot;brown&quot;)
+turtle.circle(6)
+turtle.penup()
+turtle.goto(2, -175)
+turtle.pendown()
+turtle.pencolor(&quot;lightgoldenrod&quot;)
+turtle.circle(6)
+turtle.penup()
+turtle.goto(16, -175)
+turtle.pendown()
+turtle.pencolor(&quot;green&quot;)
+turtle.circle(6)
+turtle.penup()
+
+turtle.pencolor(&quot;black&quot;)
+turtle.goto(-16, -160)
+turtle.write(&quot;BEIJING 2022&quot;, font=(&#39;Arial&#39;, 10, &#39;bold italic&#39;))
+turtle.hideturtle()
+
+turtle.done()
+</code></pre>
+<p>效果展示:<br><img src="https://s2.loli.net/2022/09/28/ZJp9vs3ETRY6PFh.jpg" alt="bingdd.jpg"><br>动图:<br><img src="https://s2.loli.net/2022/09/28/8BCXRWh6IG54LnY.gif" alt="bingdd.gif"></p>
+<h2 id="哆啦A梦实战"><a href="#哆啦A梦实战" class="headerlink" title="哆啦A梦实战:"></a>哆啦A梦实战:</h2><pre><code>from turtle import *
+
+&#39;&#39;&#39;
+Python学习
+&#39;&#39;&#39;
+
+
+# 无轨迹跳跃
+def my_goto(x, y):
+    penup()
+    goto(x, y)
+    pendown()
+
+
+# 眼睛
+def eyes():
+    fillcolor(&quot;#ffffff&quot;)
+    begin_fill()
+
+    tracer(False)
+    a = 2.5
+    for i in range(120):
+        if 0 &lt;= i &lt; 30 or 60 &lt;= i &lt; 90:
+            a -= 0.05
+            lt(3)
+            fd(a)
+        else:
+            a += 0.05
+            lt(3)
+            fd(a)
+    tracer(True)
+    end_fill()
+
+
+# 胡须
+def beard():
+    my_goto(-32, 135)
+    seth(165)
+    fd(60)
+
+    my_goto(-32, 125)
+    seth(180)
+    fd(60)
+
+    my_goto(-32, 115)
+    seth(193)
+    fd(60)
+
+    my_goto(37, 135)
+    seth(15)
+    fd(60)
+
+    my_goto(37, 125)
+    seth(0)
+    fd(60)
+
+    my_goto(37, 115)
+    seth(-13)
+    fd(60)
+
+
+# 嘴巴
+def mouth():
+    my_goto(5, 148)
+    seth(270)
+    fd(100)
+    seth(0)
+    circle(120, 50)
+    seth(230)
+    circle(-120, 100)
+
+
+# 围巾
+def scarf():
+    fillcolor(&#39;#e70010&#39;)
+    begin_fill()
+    seth(0)
+    fd(200)
+    circle(-5, 90)
+    fd(10)
+    circle(-5, 90)
+    fd(207)
+    circle(-5, 90)
+    fd(10)
+    circle(-5, 90)
+    end_fill()
+
+
+# 鼻子
+def nose():
+    my_goto(-10, 158)
+    seth(315)
+    fillcolor(&#39;#e70010&#39;)
+    begin_fill()
+    circle(20)
+    end_fill()
+
+
+# 黑眼睛
+def black_eyes():
+    seth(0)
+    my_goto(-20, 195)
+    fillcolor(&#39;#000000&#39;)
+    begin_fill()
+    circle(13)
+    end_fill()
+
+    pensize(6)
+    my_goto(20, 205)
+    seth(75)
+    circle(-10, 150)
+    pensize(3)
+
+    my_goto(-17, 200)
+    seth(0)
+    fillcolor(&#39;#ffffff&#39;)
+    begin_fill()
+    circle(5)
+    end_fill()
+    my_goto(0, 0)
+
+
+# 脸
+def face():
+    fd(183)
+    lt(45)
+    fillcolor(&#39;#ffffff&#39;)
+    begin_fill()
+    circle(120, 100)
+    seth(180)
+    # print(pos())
+    fd(121)
+    pendown()
+    seth(215)
+    circle(120, 100)
+    end_fill()
+    my_goto(63.56, 218.24)
+    seth(90)
+    eyes()
+    seth(180)
+    penup()
+    fd(60)
+    pendown()
+    seth(90)
+    eyes()
+    penup()
+    seth(180)
+    fd(64)
+
+
+# 头型
+def head():
+    penup()
+    circle(150, 40)
+    pendown()
+    fillcolor(&#39;#00a0de&#39;)
+    begin_fill()
+    circle(150, 280)
+    end_fill()
+
+
+# 画哆啦A梦
+def Doraemon():
+    # 头部
+    head()
+
+    # 围脖
+    scarf()
+
+    # 脸
+    face()
+
+    # 红鼻子
+    nose()
+
+    # 嘴巴
+    mouth()
+
+    # 胡须
+    beard()
+
+    # 身体
+    my_goto(0, 0)
+    seth(0)
+    penup()
+    circle(150, 50)
+    pendown()
+    seth(30)
+    fd(40)
+    seth(70)
+    circle(-30, 270)
+
+    fillcolor(&#39;#00a0de&#39;)
+    begin_fill()
+
+    seth(230)
+    fd(80)
+    seth(90)
+    circle(1000, 1)
+    seth(-89)
+    circle(-1000, 10)
+
+    # print(pos())
+
+    seth(180)
+    fd(70)
+    seth(90)
+    circle(30, 180)
+    seth(180)
+    fd(70)
+
+    # print(pos())
+    seth(100)
+    circle(-1000, 9)
+
+    seth(-86)
+    circle(1000, 2)
+    seth(230)
+    fd(40)
+
+    # print(pos())
+
+    circle(-30, 230)
+    seth(45)
+    fd(81)
+    seth(0)
+    fd(203)
+    circle(5, 90)
+    fd(10)
+    circle(5, 90)
+    fd(7)
+    seth(40)
+    circle(150, 10)
+    seth(30)
+    fd(40)
+    end_fill()
+
+    # 左手
+    seth(70)
+    fillcolor(&#39;#ffffff&#39;)
+    begin_fill()
+    circle(-30)
+    end_fill()
+
+    # 脚
+    my_goto(103.74, -182.59)
+    seth(0)
+    fillcolor(&#39;#ffffff&#39;)
+    begin_fill()
+    fd(15)
+    circle(-15, 180)
+    fd(90)
+    circle(-15, 180)
+    fd(10)
+    end_fill()
+
+    my_goto(-96.26, -182.59)
+    seth(180)
+    fillcolor(&#39;#ffffff&#39;)
+    begin_fill()
+    fd(15)
+    circle(15, 180)
+    fd(90)
+    circle(15, 180)
+    fd(10)
+    end_fill()
+
+    # 右手
+    my_goto(-133.97, -91.81)
+    seth(50)
+    fillcolor(&#39;#ffffff&#39;)
+    begin_fill()
+    circle(30)
+    end_fill()
+
+    # 口袋
+    my_goto(-103.42, 15.09)
+    seth(0)
+    fd(38)
+    seth(230)
+    begin_fill()
+    circle(90, 260)
+    end_fill()
+
+    my_goto(5, -40)
+    seth(0)
+    fd(70)
+    seth(-90)
+    circle(-70, 180)
+    seth(0)
+    fd(70)
+
+    # 铃铛
+    my_goto(-103.42, 15.09)
+    fd(90)
+    seth(70)
+    fillcolor(&#39;#ffd200&#39;)
+    # print(pos())
+    begin_fill()
+    circle(-20)
+    end_fill()
+    seth(170)
+    fillcolor(&#39;#ffd200&#39;)
+    begin_fill()
+    circle(-2, 180)
+    seth(10)
+    circle(-100, 22)
+    circle(-2, 180)
+    seth(180 - 10)
+    circle(100, 22)
+    end_fill()
+    goto(-13.42, 15.09)
+    seth(250)
+    circle(20, 110)
+    seth(90)
+    fd(15)
+    dot(10)
+    my_goto(0, -150)
+
+    # 画眼睛
+    black_eyes()
+
+
+if __name__ == &#39;__main__&#39;:
+    screensize(800, 600, &quot;#f0f0f0&quot;)
+    pensize(3)  # 画笔宽度
+    speed(3)  # 画笔速度
+    Doraemon()
+    my_goto(100, -300)
+    write(&#39;Surorinr&#39;, font=(&quot;Bradley Hand ITC&quot;, 30, &quot;bold&quot;))
+    mainloop()
+</code></pre>
+<p>效果展示:<br><img src="https://s2.loli.net/2022/09/28/cuTvaLfr4IteX6B.jpg" alt="duola.jpg"></p>
+<p>动图:<br><img src="https://s2.loli.net/2022/09/28/AgQFauk1h4tSPGH.gif" alt="duola.gif"></p>
+<h2 id="小猪佩奇实战"><a href="#小猪佩奇实战" class="headerlink" title="小猪佩奇实战:"></a>小猪佩奇实战:</h2><pre><code># coding:utf-8
+import turtle as t
+t.pensize(6) # 设置画笔的大小
+t.colormode(255) # 设置GBK颜色范围为0-255
+t.color((255,155,192),&quot;pink&quot;) # 设置画笔颜色和填充颜色(pink)
+t.setup(840,500) # 设置主窗口的大小为840*500
+t.speed(50) # 设置画笔速度为10
+#鼻子
+t.pu() # 提笔
+t.goto(-100,100) # 画笔前往坐标(-100,100)
+t.pd() # 下笔
+t.seth(-30) # 笔的角度为-30°
+t.begin_fill() # 外形填充的开始标志
+a=0.4
+for i in range(120):
+   if 0&lt;=i&lt;30 or 60&lt;=i&lt;90:
+       a=a+0.08
+       t.lt(3) #向左转3度
+       t.fd(a) #向前走a的步长
+   else:
+       a=a-0.08
+       t.lt(3)
+       t.fd(a)
+t.end_fill() # 依据轮廓填充
+t.pu() # 提笔
+t.seth(90) # 笔的角度为90度
+t.fd(25) # 向前移动25
+t.seth(0) # 转换画笔的角度为0
+t.fd(10)
+t.pd()
+t.pencolor(255,155,192) # 设置画笔颜色
+t.seth(10)
+t.begin_fill()
+t.circle(5) # 画一个半径为5的圆
+t.color(160,82,45) # 设置画笔和填充颜色
+t.end_fill()
+t.pu()
+t.seth(0)
+t.fd(20)
+t.pd()
+t.pencolor(255,155,192)
+t.seth(10)
+t.begin_fill()
+t.circle(5)
+t.color(160,82,45)
+t.end_fill()
+#头
+t.color((255,155,192),&quot;pink&quot;)
+t.pu()
+t.seth(90)
+t.fd(41)
+t.seth(0)
+t.fd(0)
+t.pd()
+t.begin_fill()
+t.seth(180)
+t.circle(300,-30) # 顺时针画一个半径为300,圆心角为30°的园
+t.circle(100,-60)
+t.circle(80,-100)
+t.circle(150,-20)
+t.circle(60,-95)
+t.seth(161)
+t.circle(-300,15)
+t.pu()
+t.goto(-100,100)
+t.pd()
+t.seth(-30)
+a=0.4
+for i in range(60):
+   if 0&lt;=i&lt;30 or 60&lt;=i&lt;90:
+       a=a+0.08
+       t.lt(3) #向左转3度
+       t.fd(a) #向前走a的步长
+   else:
+       a=a-0.08
+       t.lt(3)
+       t.fd(a)
+t.end_fill()
+#耳朵
+t.color((255,155,192),&quot;pink&quot;)
+t.pu()
+t.seth(90)
+t.fd(-7)
+t.seth(0)
+t.fd(70)
+t.pd()
+t.begin_fill()
+t.seth(100)
+t.circle(-50,50)
+t.circle(-10,120)
+t.circle(-50,54)
+t.end_fill()
+t.pu()
+t.seth(90)
+t.fd(-12)
+t.seth(0)
+t.fd(30)
+t.pd()
+t.begin_fill()
+t.seth(100)
+t.circle(-50,50)
+t.circle(-10,120)
+t.circle(-50,56)
+t.end_fill()
+#眼睛
+t.color((255,155,192),&quot;white&quot;)
+t.pu()
+t.seth(90)
+t.fd(-20)
+t.seth(0)
+t.fd(-95)
+t.pd()
+t.begin_fill()
+t.circle(15)
+t.end_fill()
+t.color(&quot;black&quot;)
+t.pu()
+t.seth(90)
+t.fd(12)
+t.seth(0)
+t.fd(-3)
+t.pd()
+t.begin_fill()
+t.circle(3)
+t.end_fill()
+t.color((255,155,192),&quot;white&quot;)
+t.pu()
+t.seth(90)
+t.fd(-25)
+t.seth(0)
+t.fd(40)
+t.pd()
+t.begin_fill()
+t.circle(15)
+t.end_fill()
+t.color(&quot;black&quot;)
+t.pu()
+t.seth(90)
+t.fd(12)
+t.seth(0)
+t.fd(-3)
+t.pd()
+t.begin_fill()
+t.circle(3)
+t.end_fill()
+#腮
+t.color((255,155,192))
+t.pu()
+t.seth(90)
+t.fd(-95)
+t.seth(0)
+t.fd(65)
+t.pd()
+t.begin_fill()
+t.circle(30)
+t.end_fill()
+#嘴
+t.color(239,69,19)
+t.pu()
+t.seth(90)
+t.fd(15)
+t.seth(0)
+t.fd(-100)
+t.pd()
+t.seth(-80)
+t.circle(30,40)
+t.circle(40,80)
+#身体
+t.color(&quot;red&quot;,(255,99,71))
+t.pu()
+t.seth(90)
+t.fd(-20)
+t.seth(0)
+t.fd(-78)
+t.pd()
+t.begin_fill()
+t.seth(-130)
+t.circle(100,10)
+t.circle(300,30)
+t.seth(0)
+t.fd(230)
+t.seth(90)
+t.circle(300,30)
+t.circle(100,3)
+t.color((255,155,192),(255,100,100))
+t.seth(-135)
+t.circle(-80,63)
+t.circle(-150,24)
+t.end_fill()
+#手
+t.color((255,155,192))
+t.pu()
+t.seth(90)
+t.fd(-40)
+t.seth(0)
+t.fd(-27)
+t.pd()
+t.seth(-160)
+t.circle(300,15)
+t.pu()
+t.seth(90)
+t.fd(15)
+t.seth(0)
+t.fd(0)
+t.pd()
+t.seth(-10)
+t.circle(-20,90)
+t.pu()
+t.seth(90)
+t.fd(30)
+t.seth(0)
+t.fd(237)
+t.pd()
+t.seth(-20)
+t.circle(-300,15)
+t.pu()
+t.seth(90)
+t.fd(20)
+t.seth(0)
+t.fd(0)
+t.pd()
+t.seth(-170)
+t.circle(20,90)
+#脚
+t.pensize(10)
+t.color((240,128,128))
+t.pu()
+t.seth(90)
+t.fd(-75)
+t.seth(0)
+t.fd(-180)
+t.pd()
+t.seth(-90)
+t.fd(40)
+t.seth(-180)
+t.color(&quot;black&quot;)
+t.pensize(15)
+t.fd(20)
+t.pensize(10)
+t.color((240,128,128))
+t.pu()
+t.seth(90)
+t.fd(40)
+t.seth(0)
+t.fd(90)
+t.pd()
+t.seth(-90)
+t.fd(40)
+t.seth(-180)
+t.color(&quot;black&quot;)
+t.pensize(15)
+t.fd(20)
+#尾巴
+t.pensize(4)
+t.color((255,155,192))
+t.pu()
+t.seth(90)
+t.fd(70)
+t.seth(0)
+t.fd(95)
+t.pd()
+t.seth(0)
+t.circle(70,20)
+t.circle(10,330)
+t.circle(70,30)
+</code></pre>
+<p>效果展示:<br><img src="https://s2.loli.net/2022/09/28/h3RtLgy6MWnxpC9.jpg" alt="xzpq.jpg"></p>
+<p>动图:<br><img src="https://s2.loli.net/2022/09/28/y7aIoVON3wY28FT.gif" alt="xzpq.gif"></p>
+<blockquote>
+<p>以上代码均来自网络。</p>
+</blockquote>
+
+    </div>
+    
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 20xx - 2022 Jorsdan的第三个小站
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @Jorsdan
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    </body>
+</html>
